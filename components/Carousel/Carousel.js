@@ -24,6 +24,7 @@ let images = [
   "./assets/carousel/trees.jpeg",
   "./assets/carousel/turntable.jpeg"
 ]
+let index = 0;
 
 function Carousel(array){
   const carousel = document.createElement('div');
@@ -32,9 +33,10 @@ function Carousel(array){
   const right = document.createElement('div');
 
   //add content
+  
   left.innerText = '<';
   right.innerText = '>';
-  img.src = array[0];
+  img.src = array[index];
   console.log(img.src);
 
   //assign classes
@@ -46,6 +48,35 @@ function Carousel(array){
   carousel.appendChild(left);
   carousel.appendChild(img);
   carousel.appendChild(right);
+
+  left.addEventListener('click', ()=>{
+    
+    if (index === 0 ){
+      //debugger;
+      index = array.length-1;
+      img.src = images[index];
+      console.log(index)
+      
+    } else {
+      //debugger;
+      index = index - 1;
+      img.src = images[index];
+      console.log(index)
+    }
+  })
+  right.addEventListener('click', ()=>{
+    if (index === array.length-1 ){
+      index = 0;
+      img.src = images[index];
+      console.log(index)
+      
+    } else {
+      index = index + 1;
+      img.src = images[index];
+      console.log(index)
+    }
+  })
+  console.log(index)
 
   return carousel;
 }
